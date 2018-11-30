@@ -8,7 +8,9 @@ import com.disnodeteam.dogecv.detectors.roverrukus.SamplingOrderDetector;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-
+/**
+ * This is a sample code that turns on the camera on the robot controller and finds the cube
+ */
 @TeleOp(name="GoldAlignExample", group="Primacy")
 
 public class GoldAlignExample extends OpMode
