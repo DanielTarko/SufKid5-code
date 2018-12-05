@@ -28,7 +28,7 @@ public class MarkerAuto extends LinearOpMode {
     static final double     LIFT_SPEED    = 0.5;
     static final double     STRAFE_SPEED    = 0.3;
     static final double     PUSH_SPEED = 0.3;
-    static final double     faceTwistTime    = 1.4;
+    static final double     faceTwistTime    = 1.3;
     double     PUSH_TIME    = 1.2;
     double     FORWARD_TIME    = 0.3;
     double     twistTime    = 0;
@@ -62,7 +62,7 @@ public class MarkerAuto extends LinearOpMode {
         robot.liftL.setPower(-LIFT_SPEED);
         robot.liftR.setPower(-LIFT_SPEED);
         runtime.reset();
-        while (opModeIsActive() && (runtime.seconds() < 6.3)) {
+        while (opModeIsActive() && (runtime.seconds() < 6.4)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
@@ -153,17 +153,17 @@ public class MarkerAuto extends LinearOpMode {
 
         //center
         runtime.reset();
-        if(detector.getXPosition() < 375 && detector.getXPosition() > 0 && extraTwistTime == 0){
+        if(detector.getXPosition() < 275 && detector.getXPosition() > 0 && extraTwistTime == 0){
             direction = "center";
             FORWARD_TIME = 0.0;
             PUSH_TIME = PUSH_TIME - 0.3;
-
+            craterTwistTime = craterTwistTime - 0.3;
 
             robot.fr.setPower(-SEARCH_SPEED);
             robot.fl.setPower(SEARCH_SPEED);
             robot.br.setPower(-SEARCH_SPEED);
             robot.bl.setPower(SEARCH_SPEED);
-            while (opModeIsActive() && (runtime.seconds() < 1.5)) {
+            while (opModeIsActive() && (runtime.seconds() < 1.25)) {
 
                 telemetry.addData("X Pos" , detector.getXPosition()); // Gold X pos.
             }
@@ -188,7 +188,7 @@ public class MarkerAuto extends LinearOpMode {
         }
 
         //twist right
-        if (opModeIsActive() && detector.getXPosition() > 400 && direction != "left" && direction != "center"  && detector.getXPosition() != 0) {
+        if (opModeIsActive() && detector.getXPosition() > 300 && direction != "left" && direction != "center"  && detector.getXPosition() != 0) {
 
 
             twistTime = runtime.seconds();
@@ -197,7 +197,7 @@ public class MarkerAuto extends LinearOpMode {
             telemetry.addData("X Pos" , detector.getXPosition()); // Gold X pos.
 
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < 0.3)) {
+            while (opModeIsActive() && (runtime.seconds() < 0.4)) {
 
                 robot.fr.setPower(SEARCH_SPEED);
                 robot.fl.setPower(-SEARCH_SPEED);
@@ -226,7 +226,7 @@ public class MarkerAuto extends LinearOpMode {
             robot.br.setPower(SEARCH_SPEED);
             robot.bl.setPower(-SEARCH_SPEED);
             runtime.reset();
-            while (opModeIsActive() && (runtime.seconds() < twistTime - 0.8)) {
+            while (opModeIsActive() && (runtime.seconds() < twistTime - 1)) {
                 telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
                 telemetry.update();
             }
